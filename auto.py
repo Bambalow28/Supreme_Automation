@@ -1,22 +1,37 @@
+"""   SUPREME WEBSITE AUTOMATION   """
+"""   PROGRAMMED USING SELENIUM & PYTHON   """
+
+"""   IMPORT WEB DRIVER & SELECT   """
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 
+"""   ASSIGN DRIVER PATH 'edgedriver' to 'browser' VARIABLE AND OPEN SPECIFIED WEBSITE USING GET()    """
 browser = webdriver.Edge('C:\\Users\\Bambalow28\\Desktop\\edgedriver')
 browser.get('https://www.supremenewyork.com/shop/all/shirts')
 
+"""   FIND ELEMENT IN THE BROWSER AND CLICK   """
 item = browser.find_element_by_link_text('Light Purple')
 item.click()
 
+"""   GIVE BROWSER A 15ms WAIT TIME   """
 browser.implicitly_wait(15)
+
+"""   GET 'ID' ELEMENT OF SIZE DROPDOWN MENU AND SELECT SIZE USING TEXT   """
 getSize = Select(browser.find_element_by_id('s'))
 getSize.select_by_visible_text('Large')
 
+"""   USING XPATH TO FIND AND CLICK THE 'ADD TO CART' BUTTON   """
+"""   ADD TO CART BUTTON IS NOT A REAL BUTTON THUS NEEDING XPATH   """
 add = browser.find_elements_by_xpath("//input[@name='commit' and @value='add to cart']")[0]
 add.click()
 
+"""   FIND CHECKOUT 'BUTTON' USING XPATH   """
+"""   SAME CONDITION AS 'ADD TO CART'   """
 checkout = browser.find_element_by_xpath("//*[@id='cart']/a[2]")
 checkout.click()
 
+"""   INPUT INFORMATION   """
+"""   FIND ELEMENT BY ID THEN SEND KEYS TO INPUT DATA   """
 fullName = browser.find_element_by_id('order_billing_name')
 fullName.send_keys('Joshua Alanis')
 
@@ -53,13 +68,17 @@ selectYear.select_by_visible_text('2024')
 cardCVV = browser.find_element_by_id('orcer')
 cardCVV.send_keys('128')
 
+"""   FIND ELEMENT OF CHECKBOX AND CLICK(CHECK)   """
 agreeTerms = browser.find_element_by_xpath("//*[@id='cart-cc']/fieldset/p[2]/label")
 agreeTerms.click()
 
+"""   FIND 'PROCESS PAYMENT' ELEMENT THEN CLICK TO FINISH   """
 processPayment = browser.find_elements_by_xpath("//input[@name='commit' and @value='process payment']")[0]
 processPayment.click()
 
+browser.close()
 
+"""   END OF CODE   """
 
 
 
